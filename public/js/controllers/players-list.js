@@ -1,5 +1,7 @@
-wormApp.controller('PlayersListController', function ($scope) {
+wormApp.controller('PlayersListController', ['$scope', 'socketService', function ($scope, socketService) {
 
-    $scope.worms = [{name: 'Gicu'}, {name: 'Bula'}]
+    socketService.on('player list', function (worms) {
+        $scope.worms = worms;
+    });
 
-});
+}]);
