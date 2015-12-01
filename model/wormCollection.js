@@ -1,24 +1,43 @@
-module.exports = function () {
+module.exports = function (size) {
 
-    var worms = {};
+    var _worms = {},
+        _size = size;
+
+    var getRandomWithBezel = function (max, bezel) {
+        return Math.floor(Math.random() * (max - (bezel * 2)) + bezel);
+    };
 
     return {
         addWorm: function (id, worm) {
-            worms[id] = worm;
+            _worms[id] = worm;
         },
         getWorm: function (id) {
-            return worms[id];
+            return _worms[id];
         },
         removeWorm: function (id) {
-            if (worms.hasOwnProperty(id)) {
-                delete worms[id];
+            if (_worms.hasOwnProperty(id)) {
+                delete _worms[id];
                 return true;
             }
         },
-        getData: function () {
-            return Object.keys(worms).map(function (wormId) {
-                return worms[wormId].getData();
+        getWorms: function () {
+            return Object.keys(_worms).map(function (index) {
+                return _worms[index];
             });
+        },
+        getWormsData: function () {
+            return Object.keys(_worms).map(function (index) {
+                return _worms[index].getData();
+            });
+        },
+        getSize: function () {
+            return _size;
+        },
+        getRandomPosition: function () {
+            return {
+                x: getRandomWithBezel(_size.x, 2),
+                y: getRandomWithBezel(_size.y, 2)
+            };
         }
     };
 };

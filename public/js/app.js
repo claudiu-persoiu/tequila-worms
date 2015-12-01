@@ -17,11 +17,28 @@ wormApp.directive('loginUser', function () {
                 height: canvas.height
             },
             matrixSize = {},
-            elementSize = {};
+            elementSize = {},
+            headColor = '#000000';
 
-        var drawMatrix = function (matrix) {
+        var drawMatrix = function (wormValue) {
             context.fillStyle = '#CCCCCC';
-            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            context.clearRect(0, 0, canvasSize.width, canvasSize.height);
+
+            wormValue.forEach(function (worm) {
+                context.fillStyle = headColor;
+
+                worm.pieces.forEach(function (piece) {
+
+                    context.fillRect(
+                        (piece.x + 1) * elementSize.width,
+                        (piece.y + 1) * elementSize.height,
+                        elementSize.width,
+                        elementSize.height
+                    );
+
+                    context.fillStyle = worm.color;
+                });
+            });
         };
 
         var getElementSize = function (matrixSize) {
@@ -36,6 +53,14 @@ wormApp.directive('loginUser', function () {
 
             matrixSize = value;
             getElementSize(value);
+        });
+
+        scope.$watch('wormData', function (value) {
+            if (!value) {
+                return;
+            }
+
+            drawMatrix(value);
         });
     };
 
