@@ -1,66 +1,42 @@
 
 var wormApp = angular.module('worms', ['ng', 'btford.socket-io']);
 
-wormApp.directive('loginUser', function () {
+wormApp.directive('loginUser', [function () {
     return {
         controller: 'LoginController',
         templateUrl: 'templates/login.html'
     };
-}).directive('canvasContainer', function () {
+}]).directive('canvasContainer', ['drawingService', function (drawingService) {
 
     var link = function (scope, element, attrs) {
 
-        var canvas = element.find('canvas')[0],
-            context = canvas.getContext('2d'),
-            canvasSize = {
-                width: canvas.width,
-                height: canvas.height
-            },
-            matrixSize = {},
-            elementSize = {},
-            headColor = '#000000';
+        var headColor = '#CCCCCC';
 
-        var drawMatrix = function (wormValue) {
-            context.fillStyle = '#CCCCCC';
-            context.clearRect(0, 0, canvasSize.width, canvasSize.height);
+        drawingService.setCanvas(element.find('canvas')[0]);
 
-            wormValue.forEach(function (worm) {
-                context.fillStyle = headColor;
-
-                worm.pieces.forEach(function (piece) {
-
-                    context.fillRect(
-                        (piece.x + 1) * elementSize.width,
-                        (piece.y + 1) * elementSize.height,
-                        elementSize.width,
-                        elementSize.height
-                    );
-
-                    context.fillStyle = worm.color;
-                });
+        var drawWorm = function (worm) {
+            drawingService.setPieceColor(headColor);
+            worm.pieces.forEach(function (piece) {
+                drawingService.drawPiece(piece);
+                drawingService.setPieceColor(worm.color);
             });
         };
 
-        var getElementSize = function (matrixSize) {
-            elementSize.width = canvasSize.width / matrixSize.x;
-            elementSize.height = canvasSize.height / matrixSize.y;
+        var drawMatrix = function (worms) {
+            drawingService.clearCanvas();
+            worms.forEach(drawWorm);
         };
 
-        scope.$watch('matrixSize', function(value) {
-            if (!value) {
-                return;
+        scope.$watch('matrixSize', function(matrixSize) {
+            if (matrixSize) {
+                drawingService.setMatrixSize(matrixSize);
             }
-
-            matrixSize = value;
-            getElementSize(value);
         });
 
-        scope.$watch('wormData', function (value) {
-            if (!value) {
-                return;
+        scope.$watch('wormData', function (worms) {
+            if (worms) {
+                drawMatrix(worms);
             }
-
-            drawMatrix(value);
         });
     };
 
@@ -69,14 +45,14 @@ wormApp.directive('loginUser', function () {
         templateUrl: 'templates/canvas.html',
         link: link
     };
-}).directive('playersList', function () {
+}]).directive('playersList', [function () {
     return {
         controller: 'PlayersListController',
         templateUrl: 'templates/players-list.html'
     };
-}).directive('playersLogging', function () {
+}]).directive('playersLogging', [function () {
     return {
         controller: 'PlayersLoggingController',
         templateUrl: 'templates/players-logging.html'
     };
-});
+}]);

@@ -43,7 +43,7 @@ module.exports = function (id, name, position) {
             }
 
         },
-        setDead: function () {
+        kill: function () {
             _dead = true
         },
         isDead: function () {

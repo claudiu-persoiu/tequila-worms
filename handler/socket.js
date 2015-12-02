@@ -7,8 +7,8 @@ var tableSize = {
     modelWorm = require('../model/worm'),
     randomDeadMessage = require('../model/dead-message'),
     io = null,
-    headIndex = 0,
-    connections = {};
+    connections = {},
+    collision = require('../model/collision');
 
 var connectionHandler = function (client) {
 
@@ -40,107 +40,60 @@ var connectionHandler = function (client) {
 
 setInterval(function () {
     new Promise(function (resolve, error) {
-        resolve(wormCollection.getWorms());
+
+        var worms = wormCollection.getWorms();
+
+        if (worms.length) {
+            resolve(worms);
+        }
     }).then(function (worms) {
 
         worms.forEach(function (worm) {
 
             worm.step();
 
-            // check hit the wall
-            if (checkHitTheWall(worm.getHead(), tableSize)
-                || checkHitItself(worm)) {
-                worm.setDead();
+            if (collision.checkHitTheWall(worm.getHead(), tableSize)
+                || collision.checkHitItself(worm)) {
+                worm.kill();
 
                 return;
             }
 
-            worm.getPieces().every(function (piece, index) {
-                return worms.every(function (otherWorm) {
-                    if (worm === otherWorm || otherWorm.isDead()) {
-                        return true;
-                    }
-
-                    if (wormIntersectWithPiece(otherWorm, piece)) {
-                        if (index == headIndex) {
-
-                            var wormPiecesLength = worm.getPieces().length,
-                                otherWormPiecesLength = otherWorm.getPieces().length;
-
-                            if (wormPiecesLength == otherWormPiecesLength) {
-                                worm.setDead();
-                                otherWorm.setDead();
-                            } else if (wormPiecesLength < otherWormPiecesLength) {
-                                worm.setDead();
-                                otherWorm.addPieces(wormPiecesLength);
-                            } else {
-                                otherWorm.setDead();
-                                worm.addPieces(otherWormPiecesLength);
-                            }
-
-                            return false;
-                        }
-
-                        otherWorm.addPieces(worm.getPieces().length - index);
-                        worm.removePieces(index);
-
-                        return false;
-                    }
-
-                    return true;
-                });
-            });
+            collision.intersectWormsWithOthers(worm, worms);
         });
 
         return worms;
-    }).then(function (worms) {
-        worms = worms.filter(function (worm) {
-            if (worm.isDead()) {
-                wormCollection.removeWorm(worm.id);
-                io.emit('dead worm', worm.name + ' ' + randomDeadMessage());
+    }).then(filterDeadWorms).then(exportWormsData);
+}, 500);
 
-                var client = connections[worm.id];
-                client.emit('you dead', true);
 
-                return false;
-            }
+var filterDeadWorms = function (worms) {
+    worms = worms.filter(function (worm) {
+        if (worm.isDead()) {
+            wormCollection.removeWorm(worm.id);
+            io.emit('dead worm', worm.name + ' ' + randomDeadMessage());
 
-            return true;
-        });
-
-        return worms;
-    }).then(function (worms) {
-        worms = worms.map(function (worm) {
-            return worm.getData();
-        });
-
-        emitPlayerList();
-        io.emit('worm data', worms);
+            connections[worm.id].emit('you dead', true);
+            return false;
+        }
+        return true;
     });
-}, 1000);
 
-var wormIntersectWithPiece = function (worm, piece) {
-    var head = worm.getHead();
+    return worms;
+};
 
-    return piece.x == head.x && piece.y == head.y;
+var exportWormsData = function (worms) {
+    var wormsData = worms.map(function (worm) {
+        return worm.getData();
+    });
+
+    emitPlayerList();
+    io.emit('worm data', wormsData);
 };
 
 var emitPlayerList = function () {
     console.log('emit player list');
     io.emit('player list', wormCollection.getWormsData());
-};
-
-var checkHitTheWall = function (head, table) {
-    return head.x < -1 || head.y < -1 || head.x >= table.x - 1 || head.y >= table.y - 1;
-};
-
-var checkHitItself = function (worm) {
-    var pieces = worm.getPieces().slice(0);
-    var head = pieces.shift();
-
-    return !pieces.every(function (piece) {
-        return !((head.x == piece.x) && (head.y == piece.y));
-    });
 };
 
 module.exports = function (server) {
