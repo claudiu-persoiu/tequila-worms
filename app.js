@@ -10,4 +10,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var server = http.createServer(app);
 server.listen('3000');
-require('./handler/socket.js')(server);
+require('./model/socket-handler')(server);

@@ -1,7 +1,42 @@
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/lobster.woff');
 }
 
-a {
-  color: #00B7FF;
+body {
+    background-color: #efefef !important;
+}
+
+h1 {
+    text-align: center;
+    font-family: myFirstFont!important;
+}
+
+.canvas-container canvas {
+    background: #fefefe;
+    width: 100%;
+    max-width: 800px;
+}
+
+.player-name-overlay {
+    top: auto;
+    margin-top: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.player-color {
+    width: 15px; height: 15px; display:inline-block;
+    vertical-align: middle;
+}
+
+.player-list {
+    float: left; position: absolute; top: 100px;
+}
+
+.player-list li {
+    list-style-type: none; opacity: 0.3;
 }

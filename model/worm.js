@@ -1,4 +1,4 @@
-var direction = require('./direction')
+var direction = require('./direction'),
     generateColor = require('./generate-color');
 
 module.exports = function (id, name, position) {

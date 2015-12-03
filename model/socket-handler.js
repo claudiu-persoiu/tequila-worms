@@ -1,14 +1,14 @@
 
 var tableSize = {
-        x: 56,
-        y: 42
+        x: 80,
+        y: 55
     },
-    wormCollection = require('../model/wormCollection')(tableSize),
-    modelWorm = require('../model/worm'),
-    randomDeadMessage = require('../model/dead-message'),
+    wormCollection = require('./wormCollection')(tableSize),
+    modelWorm = require('./worm'),
+    randomDeadMessage = require('./dead-message'),
     io = null,
     connections = {},
-    collision = require('../model/collision');
+    collision = require('./collision');
 
 var connectionHandler = function (client) {
 

@@ -1,18 +1,19 @@
 
-var wormApp = angular.module('worms', ['ng', 'btford.socket-io']);
+var wormApp = angular.module('worms', ['ng', 'btford.socket-io', 'ui.bootstrap']);
 
 wormApp.directive('loginUser', [function () {
     return {
         controller: 'LoginController',
         templateUrl: 'templates/login.html'
     };
-}]).directive('canvasContainer', ['drawingService', function (drawingService) {
+}]).directive('canvasContainer', ['drawingService', '$window', function (drawingService, $window) {
 
     var link = function (scope, element, attrs) {
 
         var headColor = '#CCCCCC';
 
-        drawingService.setCanvas(element.find('canvas')[0]);
+        drawingService.setCanvas(element.find('canvas')[0])
+            .calculateProportions();
 
         var drawWorm = function (worm) {
             drawingService.setPieceColor(headColor);
@@ -27,9 +28,15 @@ wormApp.directive('loginUser', [function () {
             worms.forEach(drawWorm);
         };
 
+        angular.element($window).bind('resize', function() {
+            drawingService.calculateProportions()
+                .calculateElementSize();
+        });
+
         scope.$watch('matrixSize', function(matrixSize) {
             if (matrixSize) {
-                drawingService.setMatrixSize(matrixSize);
+                drawingService.setMatrixSize(matrixSize)
+                    .calculateElementSize();
             }
         });
 

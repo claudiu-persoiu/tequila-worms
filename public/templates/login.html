@@ -1,9 +1,5 @@
 <div ng-controller="LoginController">
-    <form novalidate ng-show="!name.length">
-        <input type="text" ng-model="tmpname" />
-        <input type="submit" ng-click="update(tmpname)" value="save" />
-    </form>
-    <div ng-show="name.length">
+    <div ng-show="name.length" class="player-name-overlay lead">
         Prepare your self, <strong>{{ name }}</strong>!
     </div>
 </div>
