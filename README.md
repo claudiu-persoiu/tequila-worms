@@ -4,8 +4,10 @@ This is a revamped version of the https://github.com/claudiu-persoiu/tequila-wor
 
 It needs [node.js](https://nodejs.org/) and [bower](http://bower.io/) to run.
 
-  npm install
+```
+npm install
   
-  bower install
+bower install
   
-  npm start
+npm start
+```
