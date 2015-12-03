@@ -15,4 +15,8 @@ wormApp.controller('PlayersLoggingController', ['$scope', 'socketService', funct
         addMessage(message);
     });
 
+    setInterval(function () {
+        $scope.messages.pop();
+    }, 10000);
+
 }]);

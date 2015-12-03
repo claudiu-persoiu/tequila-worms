@@ -71,7 +71,7 @@ var filterDeadWorms = function (worms) {
     worms = worms.filter(function (worm) {
         if (worm.isDead()) {
             wormCollection.removeWorm(worm.id);
-            io.emit('dead worm', worm.name + ' ' + randomDeadMessage());
+            io.emit('dead worm',  worm.name + randomDeadMessage());
 
             connections[worm.id].emit('you dead', true);
             return false;
