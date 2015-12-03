@@ -1,7 +1,7 @@
 wormApp.controller('PlayersLoggingController', ['$scope', 'socketService', function ($scope, socketService) {
 
     $scope.messages = [];
-    var max = 5;
+    var max = 3;
 
     var addMessage = function (message) {
         $scope.messages.unshift(message);

@@ -8,4 +8,20 @@ wormApp.controller('CanvasController', ['$scope', 'socketService', function ($sc
         $scope.wormData = value;
     });
 
+    $scope.swipeUp = function () {
+        socketService.emit('new direction', 'down');
+    };
+
+    $scope.swipeDown = function () {
+        socketService.emit('new direction', 'up');
+    };
+
+    $scope.swipeLeft = function () {
+        socketService.emit('new direction', 'left');
+    };
+
+    $scope.swipeRight = function () {
+        socketService.emit('new direction', 'right');
+    };
+
 }]);

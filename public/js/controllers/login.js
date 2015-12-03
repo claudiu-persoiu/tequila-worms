@@ -41,7 +41,6 @@ wormApp.controller('LoginController', ['$scope', 'socketService', '$uibModal', f
     }
 
     var stopGame = function () {
-        // $scope.name = null;
         document.removeEventListener('keydown', keyDirectionUpdate);
         openModal();
     };

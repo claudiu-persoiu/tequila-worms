@@ -1,5 +1,5 @@
 
-var wormApp = angular.module('worms', ['ng', 'btford.socket-io', 'ui.bootstrap']);
+var wormApp = angular.module('worms', ['ng', 'btford.socket-io', 'ui.bootstrap', 'swipe']);
 
 wormApp.directive('loginUser', [function () {
     return {

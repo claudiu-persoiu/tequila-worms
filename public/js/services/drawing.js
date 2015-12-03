@@ -8,10 +8,10 @@ wormApp.factory('drawingService', [function () {
 
     var drawPiece = function (piece) {
         _context.fillRect(
-            (piece.x + 1) * _elementSize.width,
-            (piece.y + 1) * _elementSize.height,
-            _elementSize.width,
-            _elementSize.height
+            Math.ceil((piece.x + 1) * _elementSize.width),
+            Math.ceil((piece.y + 1) * _elementSize.height),
+            Math.ceil(_elementSize.width),
+            Math.ceil(_elementSize.height)
         );
         return this;
     };
@@ -35,7 +35,7 @@ wormApp.factory('drawingService', [function () {
         calculateProportions: function () {
             _canvasSize = {
                 width: _canvas.offsetWidth,
-                height: Math.ceil((_canvas.offsetWidth / 16) * 11)
+                height: (_canvas.offsetWidth / 16) * 11
             };
             _canvas.width = _canvasSize.width;
             _canvas.height = _canvasSize.height;
@@ -43,8 +43,8 @@ wormApp.factory('drawingService', [function () {
         },
         calculateElementSize: function () {
             _elementSize = {
-                width: Math.ceil(_canvasSize.width / _matrixSize.x),
-                height: Math.ceil(_canvasSize.height / _matrixSize.y)
+                width: (_canvasSize.width / _matrixSize.x),
+                height: (_canvasSize.height / _matrixSize.y)
             };
             return this;
         },
