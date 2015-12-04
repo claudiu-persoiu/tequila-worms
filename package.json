@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "devel": "nodemon -L app.js"
+    "start": "node_modules/coffee-script/bin/coffee app.coffee",
+    "devel": "node_modules/coffee-script/bin/coffee -w app.coffee"
   },
   "dependencies": {
+    "coffee-script": "^1.10.0",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
     "serve-favicon": "^2.3.0",

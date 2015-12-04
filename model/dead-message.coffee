@@ -1,4 +1,4 @@
-var messages = [
+messages = [
     " bites the dust",
     " killed himself",
     " fallowed bin laden",
@@ -8,8 +8,8 @@ var messages = [
     " has been undefined",
     " sleeps with the fish",
     " equals null"
-];
+]
 
-module.exports = function () {
-    return messages[Math.floor(Math.random() * messages.length)];
-};
+module.exports = () =>
+    messages[Math.floor(Math.random() * messages.length)]
+
