@@ -23,6 +23,9 @@ module.exports = function (id, name, position) {
         get id() {
             return _id;
         },
+        get color() {
+            return _color;
+        },
         getData: function () {
             return {
                 name: _name,

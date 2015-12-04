@@ -68,6 +68,8 @@ setInterval(function () {
 
 
 var filterDeadWorms = function (worms) {
+    var originalLength = worms.length;
+
     worms = worms.filter(function (worm) {
         if (worm.isDead()) {
             wormCollection.removeWorm(worm.id);
@@ -79,6 +81,10 @@ var filterDeadWorms = function (worms) {
         return true;
     });
 
+    if (originalLength > worms.length) {
+        emitPlayerList();
+    }
+
     return worms;
 };
 
@@ -87,13 +93,11 @@ var exportWormsData = function (worms) {
         return worm.getData();
     });
 
-    emitPlayerList();
     io.emit('worm data', wormsData);
 };
 
 var emitPlayerList = function () {
-    console.log('emit player list');
-    io.emit('player list', wormCollection.getWormsData());
+    io.emit('player list', wormCollection.getWormsList());
 };
 
 module.exports = function (server) {

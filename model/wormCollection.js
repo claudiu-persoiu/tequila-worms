@@ -25,9 +25,14 @@ module.exports = function (size) {
                 return _worms[index];
             });
         },
-        getWormsData: function () {
+        getWormsList: function () {
             return Object.keys(_worms).map(function (index) {
-                return _worms[index].getData();
+                var worm = _worms[index];
+
+                return {
+                    name: worm.name,
+                    color: worm.color
+                };
             });
         },
         getSize: function () {
