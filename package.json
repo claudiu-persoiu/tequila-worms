@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node_modules/coffee-script/bin/coffee app.coffee",
-    "devel": "node_modules/coffee-script/bin/coffee -w app.coffee"
+    "start": "coffee app.coffee",
+    "devel": "coffee -w app.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/claudiu-persoiu/tequila-worms.git"
   },
   "dependencies": {
     "coffee-script": "^1.10.0",
