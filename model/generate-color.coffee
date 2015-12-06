@@ -1,4 +1,4 @@
-module.exports = () =>
+module.exports = ->
     letters = '0123456789ABCDEF'.split ''
     color = '#'
     for i in [0...6]

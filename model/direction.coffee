@@ -8,7 +8,7 @@ directions =
   down:
     x: 0, y: -1
 
-getRandom = () =>
+getRandom = ->
   keys = Object.keys directions
   keys[Math.floor(Math.random() * keys.length)]
 

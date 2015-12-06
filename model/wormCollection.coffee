@@ -18,24 +18,24 @@ module.exports = (size) =>
                 delete _worms[id];
                 return true
 
-        getWorms: () =>
+        getWorms: =>
             Object.keys(_worms).map((index) =>
                 _worms[index]
             )
 
-        getWormsList: () =>
+        getWormsList: =>
             Object.keys(_worms).map((index) =>
                 worm = _worms[index]
 
                 ret =
-                    name: worm.name()
-                    color: worm.color()
+                    name: worm.getName()
+                    color: worm.getColor()
             )
 
-        getSize: () =>
+        getSize: =>
             _size
 
-        getRandomPosition: () =>
+        getRandomPosition: =>
             ret =
                 x: getRandomWithBezel(_size.x, 2)
                 y: getRandomWithBezel(_size.y, 2)

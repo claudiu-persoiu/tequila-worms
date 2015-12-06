@@ -1,5 +1,4 @@
 intersectWormsWithOthers = (worm, worms) =>
-
     worm.getPieces().every (piece, index) =>
         return worms.every (otherWorm) =>
             if worm is otherWorm or otherWorm.isDead()
@@ -13,7 +12,6 @@ intersectWormsWithOthers = (worm, worms) =>
                     worm.removePieces index
 
                 return false
-
             true
 
 headCrush = (worm, otherWorm) =>
@@ -35,7 +33,7 @@ wormIntersectWithPiece = (worm, piece) =>
     piece.x is head.x and piece.y is head.y
 
 checkHitTheWall = (head, table) =>
-    head.x < -1 || head.y < -1 || head.x >= table.x - 1 || head.y >= table.y - 1
+    head.x <= -1 || head.y <= -1 || head.x >= table.x || head.y >= table.y
 
 checkHitItself = (worm) =>
     pieces = worm.getPieces().slice(0);

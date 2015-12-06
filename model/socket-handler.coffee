@@ -1,7 +1,6 @@
 tableSize =
     x: 80
     y: 55
-
 wormCollection = require('./wormCollection') tableSize
 modelWorm = require './worm'
 randomDeadMessage = require './dead-message'
@@ -63,9 +62,9 @@ filterDeadWorms = (worms) =>
 
     worms = worms.filter((worm) =>
         if worm.isDead()
-            wormCollection.removeWorm(worm.id())
-            io.emit('dead worm',  worm.name() + randomDeadMessage())
-            connections[worm.id()].emit('you dead', true)
+            wormCollection.removeWorm(worm.getId())
+            io.emit('dead worm',  worm.getName() + randomDeadMessage())
+            connections[worm.getId()].emit('you dead', true)
             return false
 
         true
@@ -81,9 +80,9 @@ exportWormsData = (worms) =>
           worm.getData()
     )
 
-emitPlayerList = () =>
+emitPlayerList = ->
     io.emit('player list', wormCollection.getWormsList())
 
-module.exports = (server) =>
+module.exports = (server) ->
     io = require('socket.io')(server)
     io.on('connection', connectionHandler)

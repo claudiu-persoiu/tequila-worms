@@ -8,8 +8,8 @@ wormApp.factory('drawingService', [function () {
 
     var drawPiece = function (piece) {
         _context.fillRect(
-            Math.ceil((piece.x + 1) * _elementSize.width),
-            Math.ceil((piece.y + 1) * _elementSize.height),
+            Math.ceil(piece.x * _elementSize.width),
+            Math.ceil(piece.y * _elementSize.height),
             Math.ceil(_elementSize.width),
             Math.ceil(_elementSize.height)
         );

@@ -10,6 +10,5 @@ messages = [
     " equals null"
 ]
 
-module.exports = () =>
+module.exports = ->
     messages[Math.floor(Math.random() * messages.length)]
-
