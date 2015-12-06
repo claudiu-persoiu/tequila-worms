@@ -1,2 +1,7 @@
+language: node_js
+node_js:
+  - 5.0.0
+
 before_script:
-  coffee -c -o lib src
+  - coffee -c -o app.coffee app.js
+  - coffee -c -o model model
