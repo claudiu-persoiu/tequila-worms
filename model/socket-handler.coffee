@@ -9,7 +9,6 @@ connections = {}
 collision = require './collision'
 
 connectionHandler = (client) =>
-
     connections[client.id] = client
 
     console.log 'a user connected'
@@ -31,7 +30,7 @@ connectionHandler = (client) =>
     )
 
     client.on('new direction', (direction) =>
-      wormCollection.getWorm(client.id).setDirection(direction)
+        wormCollection.getWorm(client.id).setDirection(direction)
     )
 
 setInterval(() =>
@@ -40,7 +39,6 @@ setInterval(() =>
 
         if worms.length
             resolve worms
-
     ).then((worms) =>
         worms.forEach((worm) =>
             worm.step()
@@ -63,7 +61,7 @@ filterDeadWorms = (worms) =>
     worms = worms.filter((worm) =>
         if worm.isDead()
             wormCollection.removeWorm(worm.getId())
-            io.emit('dead worm',  worm.getName() + randomDeadMessage())
+            io.emit('dead worm', worm.getName() + randomDeadMessage())
             connections[worm.getId()].emit('you dead', true)
             return false
 
@@ -77,7 +75,7 @@ filterDeadWorms = (worms) =>
 
 exportWormsData = (worms) =>
     io.emit('worm data', worms.map (worm) =>
-          worm.getData()
+        worm.getData()
     )
 
 emitPlayerList = ->

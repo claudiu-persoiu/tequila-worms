@@ -1,5 +1,4 @@
 module.exports = (size) =>
-
     _worms = {}
     _size = size
 
