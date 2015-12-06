@@ -2,7 +2,7 @@
 
 This is a revamped version of the [tequila-worms-old](https://github.com/claudiu-persoiu/tequila-worms-old) project.
 
-It needs [node.js](https://nodejs.org/), [bower](http://bower.io/) and [coffee-script](http://coffeescript.org/) to run.
+It needs [node.js](https://nodejs.org/) and [bower](http://bower.io/) to run.
 
 ```
 npm install
