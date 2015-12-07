@@ -30,5 +30,6 @@ describe('Worm', ->
             expect(head).to.have.property('x').and.equal(6)
             expect(head).to.have.property('y').and.equal(7)
         )
+        
     )
 )
