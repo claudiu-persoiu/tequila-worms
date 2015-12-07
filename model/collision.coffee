@@ -4,7 +4,7 @@ intersectWormsWithOthers = (worm, worms) =>
             if worm is otherWorm or otherWorm.isDead()
                 return true
 
-            if wormIntersectWithPiece(otherWorm, piece)
+            if wormIntersectHeadWithPiece(otherWorm, piece)
                 if index == 0
                     headCrush(worm, otherWorm)
                 else
@@ -28,9 +28,12 @@ headCrush = (worm, otherWorm) =>
         otherWorm.kill()
         worm.addPieces(otherWormPiecesLength)
 
-wormIntersectWithPiece = (worm, piece) =>
+piecesCollision = (piece1, piece2) ->
+    piece1.x is piece2.x and piece1.y is piece2.y
+
+wormIntersectHeadWithPiece = (worm, piece) =>
     head = worm.getHead()
-    piece.x is head.x and piece.y is head.y
+    piecesCollision(head, piece)
 
 checkHitTheWall = (head, table) =>
     head.x <= -1 || head.y <= -1 || head.x >= table.x || head.y >= table.y
@@ -40,13 +43,13 @@ checkHitItself = (worm) =>
     head = pieces.shift();
 
     !pieces.every((piece) =>
-        !((head.x == piece.x) && (head.y == piece.y))
+        !piecesCollision(head, piece)
     )
 
 module.exports =
     checkHitItself: checkHitItself
     checkHitTheWall: checkHitTheWall
-    wormIntersectWithPiece: wormIntersectWithPiece
+    wormIntersectHeadWithPiece: wormIntersectHeadWithPiece
     headCrush: headCrush
     intersectWormsWithOthers: intersectWormsWithOthers
 

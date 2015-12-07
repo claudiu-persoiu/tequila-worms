@@ -5,10 +5,6 @@ wormCreator = require '../model/worm'
 
 describe('Collision', ->
     describe('checkHitItself', ->
-        # checkHitTheWall(head, table)
-
-        # wormIntersectWithPiece(worm, piece)
-
         # headCrush(worm, otherWorm)
 
         # intersectWormsWithOthers(worm, worms)
@@ -59,6 +55,23 @@ describe('Collision', ->
             expect(collision.checkHitTheWall({x: 3, y: 3}, {x: 1, y: 2})).to.equal(true)
             expect(collision.checkHitTheWall({x: -1, y: 2}, {x: 3, y: 3})).to.equal(true)
             expect(collision.checkHitTheWall({x: 2, y: -1}, {x: 1, y: 2})).to.equal(true)
+        )
+    )
+
+    describe('wormIntersectHeadWithPiece', ->
+        worm = wormCreator('test_id', 'test_name', {x: 1, y: 3})
+
+        it('check all worm in one piece', ->
+            expect(collision.wormIntersectHeadWithPiece(worm, {x: 2, y: 4})).to.equal(false)
+            expect(collision.wormIntersectHeadWithPiece(worm, {x: 1, y: 4})).to.equal(false)
+            expect(collision.wormIntersectHeadWithPiece(worm, {x: 1, y: 3})).to.equal(true)
+        )
+
+        it('check after step', ->
+            worm.setDirection 'up'
+            worm.setDirection 'right'
+            worm.step()
+            expect(collision.wormIntersectHeadWithPiece(worm, {x: 2, y: 3})).to.equal(true)
         )
     )
 )
