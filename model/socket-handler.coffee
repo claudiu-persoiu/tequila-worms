@@ -1,7 +1,7 @@
 tableSize =
     x: 80
     y: 55
-wormCollection = require('./wormCollection') tableSize
+wormCollection = require('./worm-collection') tableSize
 modelWorm = require './worm'
 randomDeadMessage = require './dead-message'
 io = null
