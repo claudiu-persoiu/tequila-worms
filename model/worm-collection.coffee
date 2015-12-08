@@ -18,11 +18,10 @@ module.exports = (size) =>
                 return true
 
         getWorms: =>
-            Object.keys(_worms).map((index) =>
-                _worms[index]
-            )
+            _worms[index] for index in Object.keys(_worms)
 
         getWormsList: =>
+
             Object.keys(_worms).map((index) =>
                 worm = _worms[index]
 
@@ -35,6 +34,5 @@ module.exports = (size) =>
             _size
 
         getRandomPosition: =>
-            ret =
-                x: getRandomWithBezel(_size.x, 2)
-                y: getRandomWithBezel(_size.y, 2)
+            x: getRandomWithBezel(_size.x, 2)
+            y: getRandomWithBezel(_size.y, 2)

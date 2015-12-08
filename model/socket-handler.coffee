@@ -34,7 +34,7 @@ connectionHandler = (client) =>
     )
 
 setInterval(() =>
-    new Promise((resolve, error) =>
+    new Promise((resolve) =>
         worms = wormCollection.getWorms()
 
         if worms.length
@@ -74,9 +74,7 @@ filterDeadWorms = (worms) =>
     worms
 
 exportWormsData = (worms) =>
-    io.emit('worm data', worms.map (worm) =>
-        worm.getData()
-    )
+    io.emit('worm data', (worm.getData() for worm in worms))
 
 emitPlayerList = ->
     io.emit('player list', wormCollection.getWormsList())
