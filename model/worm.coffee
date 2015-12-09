@@ -2,7 +2,7 @@ direction = require './direction'
 generateColor = require './generate-color'
 
 module.exports = (id, name, position) =>
-    generateElements = (number, position) =>
+    generateElements = (number, position) ->
         Array.apply(null, Array(number)).map(Object.prototype.valueOf, position)
 
     _id = id
@@ -15,22 +15,22 @@ module.exports = (id, name, position) =>
     _dead = false
 
     ret =
-        getId: =>
+        getId: ->
             _id
 
-        getName: =>
+        getName: ->
             _name
 
-        getColor: =>
+        getColor: ->
             _color
 
-        getHead: =>
+        getHead: ->
             _pieces[0]
 
-        getPieces: =>
+        getPieces: ->
             _pieces
 
-        getData: =>
+        getData: ->
             ret =
                 name: _name
                 color: _color
@@ -41,30 +41,31 @@ module.exports = (id, name, position) =>
                 _direction = newDirection
             this
 
-        kill: =>
+
+        kill: ->
             _dead = true
 
-        isDead: =>
+        isDead: ->
             _dead
 
-        addPieces: (number, position) =>
+        addPieces: (number, position) ->
             if position is undefined
                 position = _pieces[_pieces.length - 1]
 
             Array.prototype.push.apply(_pieces, generateElements(number, position))
 
-        removePieces: (number) =>
+        removePieces: (number) ->
             _pieces = _pieces.slice(0, number - 1)
 
             if _pieces.length < MIN_LENGTH
                 _dead = true
 
-        step: =>
+        step: ->
             movementMatrix = direction.getMovementByDirection(_direction)
 
             _pieces.unshift({
                 x: _pieces[0].x + movementMatrix.x,
                 y: _pieces[0].y + movementMatrix.y
-            });
+            })
 
             _pieces.pop()

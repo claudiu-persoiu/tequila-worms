@@ -14,10 +14,13 @@ getRandom = ->
 
 module.exports =
     getRandom: getRandom
-    getMovementByDirection: (direction) =>
+
+    getMovementByDirection: (direction) ->
         directions[direction]
-    isValidDirection: (direction) =>
+
+    isValidDirection: (direction) ->
         directions.hasOwnProperty(direction)
-    isReverse: (oldDirection, newDirection) =>
+
+    isReverse: (oldDirection, newDirection) ->
         ((directions[oldDirection].x + directions[newDirection].x) is 0 and
             (directions[oldDirection].y + directions[newDirection].y) is 0)

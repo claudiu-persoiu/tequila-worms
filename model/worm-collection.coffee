@@ -1,28 +1,27 @@
-module.exports = (size) =>
+module.exports = (size) ->
     _worms = {}
     _size = size
 
-    getRandomWithBezel = (max, bezel) =>
+    getRandomWithBezel = (max, bezel) ->
         Math.floor(Math.random() * (max - (bezel * 2)) + bezel)
 
     ret =
-        addWorm: (id, worm) =>
+        addWorm: (id, worm) ->
             _worms[id] = worm
 
-        getWorm: (id) =>
+        getWorm: (id) ->
             _worms[id]
 
-        removeWorm: (id) =>
+        removeWorm: (id) ->
             if _worms.hasOwnProperty(id)
-                delete _worms[id];
+                delete _worms[id]
                 return true
 
-        getWorms: =>
+        getWorms: ->
             _worms[index] for index in Object.keys(_worms)
 
-        getWormsList: =>
-
-            Object.keys(_worms).map((index) =>
+        getWormsList: ->
+            Object.keys(_worms).map((index) ->
                 worm = _worms[index]
 
                 ret =
@@ -30,9 +29,9 @@ module.exports = (size) =>
                     color: worm.getColor()
             )
 
-        getSize: =>
+        getSize: ->
             _size
 
-        getRandomPosition: =>
+        getRandomPosition: ->
             x: getRandomWithBezel(_size.x, 2)
             y: getRandomWithBezel(_size.y, 2)
