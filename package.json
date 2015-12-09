@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "coffee app.coffee",
-    "devel": "coffee -w app.coffee",
+    "devel": "gulp watch",
     "test": "mocha tests/*.coffee --compilers coffee:coffee-script/register"
   },
   "repository": {
@@ -20,6 +20,9 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-develop-server": "^0.5.0",
+    "gulp-mocha": "^2.2.0",
     "mocha": "^2.3.4"
   }
 }

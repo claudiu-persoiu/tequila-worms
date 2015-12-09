@@ -39,7 +39,6 @@ module.exports = (id, name, position) =>
         setDirection: (newDirection) =>
             if direction.isValidDirection(newDirection) and !direction.isReverse(_direction, newDirection)
                 _direction = newDirection
-
             this
 
         kill: =>
