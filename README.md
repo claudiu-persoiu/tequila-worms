@@ -1,6 +1,6 @@
 # Tequila-Worms
 
-[![Build Status](https://travis-ci.org/claudiu-persoiu/tequila-worms.svg)](https://travis-ci.org/claudiu-persoiu/tequila-worms)
+[![Build Status](https://travis-ci.org/claudiu-persoiu/tequila-worms.svg)](https://travis-ci.org/claudiu-persoiu/tequila-worms) [![Dependency Status](https://david-dm.org/claudiu-persoiu/tequila-worms.svg)](https://david-dm.org/claudiu-persoiu/tequila-worms) [![devDependency Status](https://david-dm.org/claudiu-persoiu/tequila-worms/dev-status.svg)](https://david-dm.org/claudiu-persoiu/tequila-worms#info=devDependencies)
 
 This is a revamped version of the [tequila-worms-old](https://github.com/claudiu-persoiu/tequila-worms-old) project.
 
