@@ -9,7 +9,7 @@ body {
 
 h1 {
     text-align: center;
-    font-family: Lobster!important;
+    font-family: Lobster !important;
 }
 
 .container {
@@ -36,16 +36,21 @@ h1 {
 }
 
 .player-color {
-    width: 15px; height: 15px; display:inline-block;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
     vertical-align: middle;
 }
 
 .player-list {
-    float: left; position: absolute; top: 120px;
+    float: left;
+    position: absolute;
+    top: 120px;
 }
 
 .player-list li {
-    list-style-type: none; opacity: 0.5;
+    list-style-type: none;
+    opacity: 0.5;
 }
 
 .player-logging-container {
@@ -60,9 +65,12 @@ h1 {
 }
 
 .player-logging li {
-    list-style-type: none; opacity: 0.5; text-align: right;
+    list-style-type: none;
+    opacity: 0.5;
+    text-align: right;
 }
 
 footer {
-    height: 40px; text-align: center;
+    height: 40px;
+    text-align: center;
 }
