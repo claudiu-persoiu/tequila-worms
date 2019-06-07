@@ -5,7 +5,7 @@
   "scripts": {
     "start": "coffee app.coffee",
     "devel": "gulp watch",
-    "test": "mocha tests/*.coffee --compilers coffee:coffee-script/register"
+    "test": "mocha tests/*.coffee --require coffee-script/register"
   },
   "repository": {
     "type": "git",
