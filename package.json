@@ -7,6 +7,9 @@
     "devel": "gulp watch",
     "test": "mocha tests/*.coffee --require coffee-script/register"
   },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/claudiu-persoiu/tequila-worms.git"
