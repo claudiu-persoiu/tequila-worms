@@ -19,7 +19,7 @@ gulp.task('watch', ['server:start'], ->
 )
 
 gulp.task('server:start', ->
-    server.listen({ path: './app.coffee' })
+    server.listen({ path: './server.coffee' })
 )
 
 gulp.task('server:restart', ->
@@ -27,7 +27,7 @@ gulp.task('server:restart', ->
 )
 
 gulp.task('lint-coffee',  ->
-    gulp.src(['app.coffee', 'model/*.coffee'])
+    gulp.src(['server.coffee', 'model/*.coffee'])
         .pipe(coffeelint(
             'indentation': {value: 4}
             'max_line_length': {value: 120}

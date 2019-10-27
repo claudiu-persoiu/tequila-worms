@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "coffee app.coffee",
+    "start": "node app.js",
     "devel": "gulp watch",
     "bower:install": "bower install",
     "test": "mocha tests/*.coffee --require coffee-script/register"
