@@ -9,7 +9,7 @@ It needs [node.js](https://nodejs.org/) and [bower](http://bower.io/) to run.
 ```
 npm install
   
-bower install
+npm run bower:install
   
 npm start
 ```
