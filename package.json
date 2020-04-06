@@ -30,7 +30,7 @@
     "gulp-develop-server": "^0.5.0",
     "gulp-jshint": "^2.0.0",
     "gulp-jslint-simple": "^1.0.1",
-    "gulp-mocha": "^6.0.0",
+    "gulp-mocha": "^7.0.2",
     "jshint": "^2.8.0",
     "mocha": "^6.1.4"
   }
