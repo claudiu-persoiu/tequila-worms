@@ -32,6 +32,6 @@
     "gulp-jslint-simple": "^1.0.1",
     "gulp-mocha": "^7.0.2",
     "jshint": "^2.8.0",
-    "mocha": "^6.1.4"
+    "mocha": "^8.0.1"
   }
 }
